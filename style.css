@@ -241,3 +241,7 @@ main>section:not(#about)::after{content:"";position:absolute;z-index:45;left:0;r
 #about .profile-nav{bottom:28px}
 @media(max-width:900px){#about{min-height:auto;padding-bottom:110px}.about-canvas{min-height:900px;grid-template-columns:1fr 310px;gap:35px}.about-intro h1{font-size:clamp(4.5rem,10vw,7rem)}.about-portrait-float{width:280px}}
 @media(max-width:700px){#about{padding:64px 20px 115px}.about-canvas{width:100%;min-height:0;grid-template-columns:1fr;gap:60px;padding-top:80px}.about-intro{padding-top:0}.about-intro h1{font-size:18vw}.about-summary{margin-top:28px}.about-education article{padding-left:0}.about-education time{position:static;display:block;margin-bottom:8px}.about-portrait-float{width:min(300px,76vw);margin:0 auto}.about-portrait-float figcaption{text-align:center}#about .about-water{inset:38% -30% 2% 4%;opacity:.28}}
+
+/* Keep the loading-page name comfortably inside the progress circle. */
+.loader-intro h1{font-size:clamp(3.2rem,6.5vw,6.6rem);white-space:nowrap}
+@media(max-width:560px){.loader-intro h1{font-size:clamp(2.8rem,14vw,4.5rem)}}
