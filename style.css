@@ -245,3 +245,12 @@ main>section:not(#about)::after{content:"";position:absolute;z-index:45;left:0;r
 /* Keep the loading-page name comfortably inside the progress circle. */
 .loader-intro h1{font-size:clamp(3.2rem,6.5vw,6.6rem);white-space:nowrap}
 @media(max-width:560px){.loader-intro h1{font-size:clamp(2.8rem,14vw,4.5rem)}}
+
+/* Skills water-bubble finish */
+#skills{background:linear-gradient(145deg,rgba(235,248,249,.78),rgba(205,233,237,.82)),url("水波纹图/5.jpg") center/cover no-repeat}
+.skill-bubble{background:radial-gradient(circle at 28% 20%,rgba(255,255,255,.92) 0 4%,rgba(255,255,255,.42) 10%,transparent 27%),radial-gradient(circle at 70% 78%,rgba(100,213,224,.2),transparent 37%),linear-gradient(145deg,rgba(255,255,255,.56),rgba(168,219,225,.28));box-shadow:inset 8px 10px 24px rgba(255,255,255,.54),inset -12px -15px 28px rgba(72,172,186,.13),0 18px 45px rgba(52,112,122,.22)}
+.skill-bubble::before{content:"";position:absolute;z-index:0;left:17%;top:11%;width:38%;height:23%;border-radius:50%;background:linear-gradient(145deg,rgba(255,255,255,.85),rgba(255,255,255,.06));filter:blur(2px);transform:rotate(-24deg);pointer-events:none;animation:bubbleGlint 4.8s calc(var(--i)*-.37s) ease-in-out infinite}
+.skill-bubble::after{content:"";position:absolute;z-index:0;inset:5px;border:1px solid rgba(255,255,255,.48);border-radius:48% 52% 46% 54%/54% 47% 53% 46%;box-shadow:inset 0 0 17px rgba(255,255,255,.27);pointer-events:none;animation:bubbleMembrane 6s calc(var(--i)*-.51s) ease-in-out infinite}
+.skill-bubble:hover{box-shadow:inset 8px 10px 27px rgba(255,255,255,.7),inset -12px -15px 30px rgba(72,172,186,.16),0 27px 58px rgba(42,110,122,.32)}
+@keyframes bubbleGlint{0%,100%{opacity:.68;translate:0 0;scale:1}50%{opacity:1;translate:9% 7%;scale:1.08}}
+@keyframes bubbleMembrane{0%,100%{border-radius:48% 52% 46% 54%/54% 47% 53% 46%;transform:rotate(0)}50%{border-radius:54% 46% 53% 47%/47% 55% 45% 53%;transform:rotate(8deg)}}
