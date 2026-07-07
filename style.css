@@ -193,8 +193,6 @@ html{scroll-padding-top:64px}
 body{background:#f7f8f7}
 main{gap:0}
 main>section{scroll-margin-top:64px}
-main>section:not(#about){margin-top:clamp(110px,9vw,170px)}
-main>section:not(#about)::after{content:"";position:absolute;z-index:45;left:0;right:0;top:0;height:clamp(90px,8vw,145px);transform:translateY(-100%);background:linear-gradient(to bottom,rgba(247,248,247,0),rgba(247,248,247,.76) 68%,rgba(247,248,247,.98));pointer-events:none}
 .flow-reveal{opacity:.18;translate:0 38px;transition:opacity .85s ease,translate .85s cubic-bezier(.2,.75,.25,1)}
 .flow-reveal.flow-visible{opacity:1;translate:0 0}
 .topbar nav a{position:relative;transition:opacity .3s,color .3s}
@@ -211,8 +209,8 @@ main>section:not(#about)::after{content:"";position:absolute;z-index:45;left:0;r
 .profile-nav a{transition:background .3s,color .3s,transform .3s}
 .profile-nav a:hover{transform:translateY(-2px)}
 .contact-glass-list{margin:155px auto 0}
-@media(max-width:900px){main>section:not(#about){margin-top:100px}.flow-reveal{translate:0 25px}#experience::before{top:82px}}
-@media(max-width:560px){main>section:not(#about){margin-top:76px}main>section:not(#about)::after{height:76px}.contact-glass-list{margin:125px auto 0}.topbar nav a:not(.active){opacity:1}}
+@media(max-width:900px){.flow-reveal{translate:0 25px}#experience::before{top:82px}}
+@media(max-width:560px){.contact-glass-list{margin:125px auto 0}.topbar nav a:not(.active){opacity:1}}
 
 /* About: open editorial canvas with a soft aqua atmosphere. */
 #about{min-height:1050px;padding:64px 0 105px;background:linear-gradient(125deg,#fff 0 47%,#f8fcfc 67%,#eef9fa 100%);display:block;overflow:hidden}
@@ -255,65 +253,27 @@ main>section:not(#about)::after{content:"";position:absolute;z-index:45;left:0;r
 @keyframes bubbleGlint{0%,100%{opacity:.68;translate:0 0;scale:1}50%{opacity:1;translate:9% 7%;scale:1.08}}
 @keyframes bubbleMembrane{0%,100%{border-radius:48% 52% 46% 54%/54% 47% 53% 46%;transform:rotate(0)}50%{border-radius:54% 46% 53% 47%/47% 55% 45% 53%;transform:rotate(8deg)}}
 
-/* Seamless section bridges: remove the grey PPT-like gaps. */
-main>section:not(#about){margin-top:0}
-main>section:not(#about)::after{content:"";position:absolute;z-index:46;left:0;right:0;top:-180px;height:180px;transform:none;pointer-events:none}
-#about::after{content:"";position:absolute;z-index:2;left:0;right:0;bottom:0;height:190px;background:linear-gradient(to bottom,rgba(255,255,255,0),rgba(255,255,255,.72) 58%,#fff 100%);pointer-events:none}
-#experience::after{background:linear-gradient(to bottom,rgba(255,255,255,.2),rgba(255,255,255,.82) 58%,#fff 100%)}
-#skills::after{background:linear-gradient(to bottom,#fff 0%,rgba(240,248,249,.76) 52%,rgba(219,239,242,.96) 100%)}
-.portfolio-wall::after{background:linear-gradient(to bottom,rgba(219,239,242,.96) 0%,rgba(244,249,249,.78) 52%,#fff 100%)}
-#contact::after{background:linear-gradient(to bottom,#fff 0%,rgba(180,207,211,.76) 46%,rgba(8,47,64,.94) 100%)}
-@media(max-width:900px){main>section:not(#about){margin-top:0}main>section:not(#about)::after{top:-145px;height:145px}#about::after{height:155px}}
-@media(max-width:560px){main>section:not(#about){margin-top:0}main>section:not(#about)::after{top:-120px;height:120px}#about::after{height:130px}}
-
-/* Final continuous document flow: About → Experience → Portfolio → Skills → Contact. */
+/* One transition system only: all fades live inside the current section. */
 html{scroll-snap-type:none!important;scroll-behavior:smooth}
 body,main{scroll-snap-type:none!important}
-#about{order:-1}
-#experience{order:0}
-#internship-detail{order:1}
-#skills{order:2}
-#contact{order:3}
-main>section{--section-top:clamp(100px,12vh,180px);--section-bottom:clamp(120px,14vh,220px);--transition-band:clamp(160px,16vw,220px);scroll-snap-align:none!important}
-#about,#skills,#contact{padding-top:var(--section-top);padding-bottom:var(--section-bottom)}
-#experience{height:auto;min-height:clamp(980px,115vh,1250px);padding-top:var(--section-top);padding-bottom:var(--section-bottom)}
-.portfolio-wall{height:1450px;padding-top:var(--section-top);padding-bottom:var(--section-bottom)}
-main>section:not(#contact){margin-top:0;margin-bottom:var(--transition-band)}
-main>section:not(#contact)::after{content:"";position:absolute;z-index:44;left:0;right:0;top:auto;bottom:calc(-1 * var(--transition-band));height:var(--transition-band);transform:none;pointer-events:none}
-#about::after{background:linear-gradient(to bottom,rgba(239,249,250,.78) 0%,rgba(248,252,252,.9) 42%,#fff 100%)}
-#experience::after{background:linear-gradient(to bottom,#fff 0%,rgba(251,252,252,.96) 50%,rgba(247,249,249,.92) 100%)}
-.portfolio-wall::after{background:linear-gradient(to bottom,#fff 0%,rgba(239,248,249,.92) 48%,rgba(211,235,239,.96) 100%)}
-#skills::after{background:linear-gradient(to bottom,rgba(211,235,239,.96) 0%,rgba(117,163,172,.88) 52%,rgba(8,47,64,.97) 100%)}
-.stage-title,#skills .ghost,.portfolio-wall>h2,#contact .scene-title{opacity:.12;translate:0 38px;transition:opacity .9s ease,translate .9s cubic-bezier(.2,.75,.25,1)}
-#experience.flow-active .stage-title,#skills.flow-active .ghost,.portfolio-wall.flow-active>h2,#contact.flow-active .scene-title{opacity:1;translate:0 0}
-.profile-nav{opacity:0!important;visibility:hidden;pointer-events:none;transition:opacity .4s,visibility .4s}
-@media(max-width:900px){main>section{--transition-band:160px}#experience{min-height:980px}.portfolio-wall{height:auto;min-height:1450px}}
-@media(max-width:560px){main>section{--section-top:100px;--section-bottom:120px;--transition-band:130px}#experience{min-height:900px}.portfolio-wall{min-height:0}}
-
-/* Correct sequence and image-led transition bands. */
-#about{order:-1}
-#experience{order:0}
-#skills{order:1}
-#internship-detail{order:2}
-#contact{order:3}
-main>section{--transition-band:clamp(160px,12vw,200px)}
-#experience{min-height:1050px}
-#about::after{background:linear-gradient(to bottom,rgba(245,252,252,.08) 0%,rgba(250,253,253,.58) 48%,#fff 100%),url("水波纹图/1.jpg") center 72%/cover no-repeat}
-#experience::after{background:linear-gradient(to bottom,#fff 0%,rgba(255,255,255,.76) 42%,rgba(215,237,240,.16) 100%),url("水波纹图/5.jpg") center 24%/cover no-repeat}
-#skills::after{background:linear-gradient(to bottom,rgba(210,235,239,.12) 0%,rgba(242,249,249,.68) 52%,#fff 100%),url("水波纹图/5.jpg") center 78%/cover no-repeat}
-.portfolio-wall::after{background:linear-gradient(to bottom,#fff 0%,rgba(255,255,255,.7) 43%,rgba(8,47,64,.32) 100%),url("水波纹图/4.jpg") center 20%/cover no-repeat}
-@media(max-width:900px){main>section{--transition-band:160px}#experience{min-height:960px}}
-@media(max-width:560px){main>section{--transition-band:130px}#experience{min-height:880px}}
-
-/* Definitive flow fix: transition bands live inside sections, so overflow cannot clip them. */
 #about{order:-1!important}
 #experience{order:0!important}
 #skills{order:1!important}
 #internship-detail{order:2!important}
 #contact{order:3!important}
-main>section{margin-top:0!important;margin-bottom:0!important}
-main>section:not(#contact)::after{content:"";position:absolute;z-index:1;left:0;right:0;top:auto!important;bottom:0!important;height:var(--transition-band);transform:none!important;pointer-events:none}
-#about::after{background:linear-gradient(to bottom,rgba(245,252,252,0) 0%,rgba(248,252,252,.48) 44%,#fff 100%),url("水波纹图/1.jpg") center 78%/cover no-repeat}
-#experience::after{background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.64) 38%,rgba(225,242,244,.76) 100%),url("水波纹图/5.jpg") center 20%/cover no-repeat}
-#skills::after{background:linear-gradient(to bottom,rgba(211,235,239,0) 0%,rgba(239,248,249,.58) 48%,#fff 100%),url("水波纹图/5.jpg") center 82%/cover no-repeat}
-.portfolio-wall::after{background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.56) 42%,rgba(2,22,34,.5) 100%),url("水波纹图/4.jpg") center 18%/cover no-repeat}
+main>section{--section-top:clamp(100px,12vh,180px);--transition-band:clamp(180px,15vw,240px);margin:0!important;scroll-snap-align:none!important}
+#about,#experience,#skills{padding-top:var(--section-top);padding-bottom:0!important}
+#experience{height:auto;min-height:900px}
+#skills{min-height:960px}
+.portfolio-wall{height:1450px;padding-top:var(--section-top);padding-bottom:0!important}
+main>section:not(#contact)::after{content:"";position:absolute;z-index:1;left:0;right:0;top:auto;bottom:0;height:var(--transition-band);transform:none;pointer-events:none}
+#about::after{background:linear-gradient(to bottom,rgba(245,252,252,0) 0%,rgba(250,253,253,.54) 48%,#fff 100%),url("水波纹图/1.jpg") center 78%/cover no-repeat}
+#experience::after{background:linear-gradient(to bottom,#fff 0%,rgba(255,255,255,.68) 48%,rgba(225,242,244,.74) 100%),url("水波纹图/5.jpg") center 20%/cover no-repeat}
+#skills::after{background:linear-gradient(to bottom,rgba(225,242,244,.72) 0%,rgba(244,250,250,.62) 50%,#fff 100%),url("水波纹图/5.jpg") center 82%/cover no-repeat}
+.portfolio-wall::after{background:linear-gradient(to bottom,#fff 0%,rgba(255,255,255,.6) 46%,rgba(2,22,34,.5) 100%),url("水波纹图/4.jpg") center 18%/cover no-repeat}
+#skills,.portfolio-wall,#contact{border-top:0!important}
+.stage-title,#skills .ghost,.portfolio-wall>h2,#contact .scene-title{opacity:.12;translate:0 38px;transition:opacity .9s ease,translate .9s cubic-bezier(.2,.75,.25,1)}
+#experience.flow-active .stage-title,#skills.flow-active .ghost,.portfolio-wall.flow-active>h2,#contact.flow-active .scene-title{opacity:1;translate:0 0}
+.profile-nav{opacity:0!important;visibility:hidden;pointer-events:none;transition:opacity .4s,visibility .4s}
+@media(max-width:900px){main>section{--transition-band:180px}#experience{min-height:880px}#skills{min-height:900px}.portfolio-wall{height:auto;min-height:1450px}}
+@media(max-width:560px){main>section{--section-top:100px;--transition-band:150px}#experience{min-height:820px}#skills{min-height:auto}.portfolio-wall{min-height:0}}
