@@ -254,3 +254,14 @@ main>section:not(#about)::after{content:"";position:absolute;z-index:45;left:0;r
 .skill-bubble:hover{box-shadow:inset 8px 10px 27px rgba(255,255,255,.7),inset -12px -15px 30px rgba(72,172,186,.16),0 27px 58px rgba(42,110,122,.32)}
 @keyframes bubbleGlint{0%,100%{opacity:.68;translate:0 0;scale:1}50%{opacity:1;translate:9% 7%;scale:1.08}}
 @keyframes bubbleMembrane{0%,100%{border-radius:48% 52% 46% 54%/54% 47% 53% 46%;transform:rotate(0)}50%{border-radius:54% 46% 53% 47%/47% 55% 45% 53%;transform:rotate(8deg)}}
+
+/* Seamless section bridges: remove the grey PPT-like gaps. */
+main>section:not(#about){margin-top:0}
+main>section:not(#about)::after{content:"";position:absolute;z-index:46;left:0;right:0;top:-180px;height:180px;transform:none;pointer-events:none}
+#about::after{content:"";position:absolute;z-index:2;left:0;right:0;bottom:0;height:190px;background:linear-gradient(to bottom,rgba(255,255,255,0),rgba(255,255,255,.72) 58%,#fff 100%);pointer-events:none}
+#experience::after{background:linear-gradient(to bottom,rgba(255,255,255,.2),rgba(255,255,255,.82) 58%,#fff 100%)}
+#skills::after{background:linear-gradient(to bottom,#fff 0%,rgba(240,248,249,.76) 52%,rgba(219,239,242,.96) 100%)}
+.portfolio-wall::after{background:linear-gradient(to bottom,rgba(219,239,242,.96) 0%,rgba(244,249,249,.78) 52%,#fff 100%)}
+#contact::after{background:linear-gradient(to bottom,#fff 0%,rgba(180,207,211,.76) 46%,rgba(8,47,64,.94) 100%)}
+@media(max-width:900px){main>section:not(#about){margin-top:0}main>section:not(#about)::after{top:-145px;height:145px}#about::after{height:155px}}
+@media(max-width:560px){main>section:not(#about){margin-top:0}main>section:not(#about)::after{top:-120px;height:120px}#about::after{height:130px}}
