@@ -200,7 +200,7 @@ main>section{scroll-margin-top:64px}
 .topbar nav a.active::after{transform:scaleX(1)}
 .topbar nav a:not(.active){opacity:.58}
 .scroll-progress{position:absolute;left:0;bottom:-1px;width:0;height:2px;background:linear-gradient(90deg,#78d8df,#183b49);box-shadow:0 0 8px #69d6df88;transition:width .08s linear}
-#experience::before{content:"02 / EXPERIENCE";position:absolute;z-index:12;top:78px;left:5vw;font-size:.62rem;letter-spacing:.16em}
+.stage-label{position:absolute;z-index:12;top:78px;left:5vw;margin:0;font-size:.62rem;letter-spacing:.16em}
 #about .scene-label{font-size:0}
 #about .scene-label::after{content:"01 / ABOUT";font-size:.62rem}
 #skills .eyebrow{font-size:0}
@@ -209,12 +209,11 @@ main>section{scroll-margin-top:64px}
 .profile-nav a{transition:background .3s,color .3s,transform .3s}
 .profile-nav a:hover{transform:translateY(-2px)}
 .contact-glass-list{margin:155px auto 0}
-@media(max-width:900px){.flow-reveal{translate:0 25px}#experience::before{top:82px}}
+@media(max-width:900px){.flow-reveal{translate:0 25px}.stage-label{top:82px}}
 @media(max-width:560px){.contact-glass-list{margin:125px auto 0}.topbar nav a:not(.active){opacity:1}}
 
 /* About: open editorial canvas with a soft aqua atmosphere. */
 #about{min-height:1050px;padding:64px 0 105px;background:linear-gradient(125deg,#fff 0 47%,#f8fcfc 67%,#eef9fa 100%);display:block;overflow:hidden}
-#about::before{content:"";display:block;position:absolute;z-index:1;inset:0;background:radial-gradient(circle at 76% 42%,rgba(107,217,220,.2),transparent 29%),radial-gradient(circle at 17% 86%,rgba(148,222,225,.12),transparent 26%);pointer-events:none}
 #about .about-water{z-index:0;inset:8% -10% 8% 49%;opacity:.3;background:linear-gradient(90deg,#fff 0,rgba(255,255,255,.68) 19%,transparent 55%),url("水波纹图/1.jpg") center/cover no-repeat;filter:blur(2px) saturate(.72) brightness(1.15);mask-image:linear-gradient(90deg,transparent 0,#000 30%,#000 78%,transparent 100%);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%,#000 78%,transparent 100%);transition:translate .35s ease-out}
 #about .about-water::before,#about .about-water::after{display:none}
 #about .scene-label{z-index:5;top:92px;left:6vw;color:#163039}
@@ -253,7 +252,7 @@ main>section{scroll-margin-top:64px}
 @keyframes bubbleGlint{0%,100%{opacity:.68;translate:0 0;scale:1}50%{opacity:1;translate:9% 7%;scale:1.08}}
 @keyframes bubbleMembrane{0%,100%{border-radius:48% 52% 46% 54%/54% 47% 53% 46%;transform:rotate(0)}50%{border-radius:54% 46% 53% 47%/47% 55% 45% 53%;transform:rotate(8deg)}}
 
-/* One transition system only: all fades live inside the current section. */
+/* Clean document flow: every section owns only its own background. */
 html{scroll-snap-type:none!important;scroll-behavior:smooth}
 body,main{scroll-snap-type:none!important}
 #about{order:-1!important}
@@ -261,20 +260,15 @@ body,main{scroll-snap-type:none!important}
 #skills{order:1!important}
 #internship-detail{order:2!important}
 #contact{order:3!important}
-main>section{--section-top:clamp(100px,12vh,180px);--transition-band:clamp(180px,15vw,240px);margin:0!important;scroll-snap-align:none!important}
-#about,#experience,#skills{padding-top:var(--section-top);padding-bottom:0!important}
-#experience{height:auto;min-height:900px}
+main>section{margin:0!important;scroll-snap-align:none!important}
+#about{padding-top:64px;padding-bottom:105px}
+#experience{height:auto;min-height:900px;padding:0;background:#fff}
 #skills{min-height:960px}
-.portfolio-wall{height:1450px;padding-top:var(--section-top);padding-bottom:0!important}
-#about::after,#skills::before,#skills::after,#contact::before{content:"";position:absolute;z-index:1;left:0;right:0;height:var(--transition-band);pointer-events:none}
-#about::after{top:auto;bottom:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.54) 52%,#fff 100%)}
-#skills::before{top:0;bottom:auto;background:linear-gradient(to bottom,#fff 0%,rgba(255,255,255,.66) 46%,rgba(255,255,255,0) 100%)}
-#skills::after{top:auto;bottom:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.62) 50%,#fff 100%)}
-#contact::before{top:0;bottom:auto;background:linear-gradient(to bottom,#fff 0%,rgba(255,255,255,.62) 46%,rgba(255,255,255,0) 100%)}
-#experience::after,.portfolio-wall::after{content:none!important;display:none!important}
+.portfolio-wall{height:1450px}
+#about::before,#about::after,#experience::before,#experience::after,#skills::before,#skills::after,.portfolio-wall::before,.portfolio-wall::after,#contact::before,#contact::after{content:none!important;display:none!important}
 #skills,.portfolio-wall,#contact{border-top:0!important}
 .stage-title,#skills .ghost,.portfolio-wall>h2,#contact .scene-title{opacity:.12;translate:0 38px;transition:opacity .9s ease,translate .9s cubic-bezier(.2,.75,.25,1)}
 #experience.flow-active .stage-title,#skills.flow-active .ghost,.portfolio-wall.flow-active>h2,#contact.flow-active .scene-title{opacity:1;translate:0 0}
 .profile-nav{opacity:0!important;visibility:hidden;pointer-events:none;transition:opacity .4s,visibility .4s}
-@media(max-width:900px){main>section{--transition-band:180px}#experience{min-height:880px}#skills{min-height:900px}.portfolio-wall{height:auto;min-height:1450px}}
-@media(max-width:560px){main>section{--section-top:100px;--transition-band:150px}#experience{min-height:820px}#skills{min-height:auto}.portfolio-wall{min-height:0}}
+@media(max-width:900px){#experience{min-height:880px}#skills{min-height:900px}.portfolio-wall{height:auto;min-height:1450px}}
+@media(max-width:560px){#experience{min-height:820px}#skills{min-height:auto}.portfolio-wall{min-height:0}}
