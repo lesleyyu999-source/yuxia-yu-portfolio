@@ -265,3 +265,27 @@ main>section:not(#about)::after{content:"";position:absolute;z-index:46;left:0;r
 #contact::after{background:linear-gradient(to bottom,#fff 0%,rgba(180,207,211,.76) 46%,rgba(8,47,64,.94) 100%)}
 @media(max-width:900px){main>section:not(#about){margin-top:0}main>section:not(#about)::after{top:-145px;height:145px}#about::after{height:155px}}
 @media(max-width:560px){main>section:not(#about){margin-top:0}main>section:not(#about)::after{top:-120px;height:120px}#about::after{height:130px}}
+
+/* Final continuous document flow: About → Experience → Portfolio → Skills → Contact. */
+html{scroll-snap-type:none!important;scroll-behavior:smooth}
+body,main{scroll-snap-type:none!important}
+#about{order:-1}
+#experience{order:0}
+#internship-detail{order:1}
+#skills{order:2}
+#contact{order:3}
+main>section{--section-top:clamp(100px,12vh,180px);--section-bottom:clamp(120px,14vh,220px);--transition-band:clamp(160px,16vw,220px);scroll-snap-align:none!important}
+#about,#skills,#contact{padding-top:var(--section-top);padding-bottom:var(--section-bottom)}
+#experience{height:auto;min-height:clamp(980px,115vh,1250px);padding-top:var(--section-top);padding-bottom:var(--section-bottom)}
+.portfolio-wall{height:1450px;padding-top:var(--section-top);padding-bottom:var(--section-bottom)}
+main>section:not(#contact){margin-top:0;margin-bottom:var(--transition-band)}
+main>section:not(#contact)::after{content:"";position:absolute;z-index:44;left:0;right:0;top:auto;bottom:calc(-1 * var(--transition-band));height:var(--transition-band);transform:none;pointer-events:none}
+#about::after{background:linear-gradient(to bottom,rgba(239,249,250,.78) 0%,rgba(248,252,252,.9) 42%,#fff 100%)}
+#experience::after{background:linear-gradient(to bottom,#fff 0%,rgba(251,252,252,.96) 50%,rgba(247,249,249,.92) 100%)}
+.portfolio-wall::after{background:linear-gradient(to bottom,#fff 0%,rgba(239,248,249,.92) 48%,rgba(211,235,239,.96) 100%)}
+#skills::after{background:linear-gradient(to bottom,rgba(211,235,239,.96) 0%,rgba(117,163,172,.88) 52%,rgba(8,47,64,.97) 100%)}
+.stage-title,#skills .ghost,.portfolio-wall>h2,#contact .scene-title{opacity:.12;translate:0 38px;transition:opacity .9s ease,translate .9s cubic-bezier(.2,.75,.25,1)}
+#experience.flow-active .stage-title,#skills.flow-active .ghost,.portfolio-wall.flow-active>h2,#contact.flow-active .scene-title{opacity:1;translate:0 0}
+.profile-nav{opacity:0!important;visibility:hidden;pointer-events:none;transition:opacity .4s,visibility .4s}
+@media(max-width:900px){main>section{--transition-band:160px}#experience{min-height:980px}.portfolio-wall{height:auto;min-height:1450px}}
+@media(max-width:560px){main>section{--section-top:100px;--section-bottom:120px;--transition-band:130px}#experience{min-height:900px}.portfolio-wall{min-height:0}}

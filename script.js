@@ -85,6 +85,7 @@ revealTargets.forEach(target=>target.classList.add('flow-reveal'));
 const flowObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
   const targets=entry.target.querySelectorAll(':scope>.flow-reveal');
   targets.forEach(target=>target.classList.toggle('flow-visible',entry.isIntersecting));
+  entry.target.classList.toggle('flow-active',entry.isIntersecting);
 }),{threshold:.12,rootMargin:'-8% 0px -8% 0px'});
 flowSections.forEach(section=>flowObserver.observe(section));
 
@@ -93,7 +94,7 @@ const navObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
   if(!entry.isIntersecting)return;
   navLinks.forEach(link=>link.classList.toggle('active',link.getAttribute('href')===`#${entry.target.id}`));
 }),{rootMargin:'-36% 0px -54% 0px',threshold:0});
-['about','experience','skills','contact'].forEach(id=>{const section=document.getElementById(id);if(section)navObserver.observe(section)});
+['about','experience','internship-detail','skills','contact'].forEach(id=>{const section=document.getElementById(id);if(section)navObserver.observe(section)});
 const updateScrollProgress=()=>{const max=document.documentElement.scrollHeight-innerHeight;progressBar.style.width=`${max>0?scrollY/max*100:0}%`};
 addEventListener('scroll',updateScrollProgress,{passive:true});
 addEventListener('resize',updateScrollProgress,{passive:true});
