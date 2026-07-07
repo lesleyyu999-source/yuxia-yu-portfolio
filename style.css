@@ -174,8 +174,8 @@ main{display:flex;flex-direction:column}#about{order:-1}#portfolio{order:0}#expe
 
 /* Contact: glass rows directly over water texture 4. */
 #contact{min-height:900px;padding:110px 6vw 125px;background:#082f40;display:grid;place-items:center}
-#contact::before{content:"";position:absolute;z-index:1;inset:0;background:linear-gradient(105deg,rgba(2,22,34,.46),rgba(5,43,57,.22) 48%,rgba(0,21,34,.5));pointer-events:none}
 #contact .contact-texture{z-index:0;inset:-5%;opacity:1;background:url("水波纹图/4.jpg") center/cover no-repeat;filter:saturate(.9) contrast(1.04) brightness(.78)}
+#contact .contact-texture::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(2,22,34,.46),rgba(5,43,57,.22) 48%,rgba(0,21,34,.5));pointer-events:none}
 #contact .contact-texture::after{display:none}
 #contact .scene-title{z-index:2;top:72px;color:rgba(255,255,255,.88);text-shadow:0 5px 34px rgba(0,20,30,.38)}
 #contact .scene-label{z-index:3;top:42px}
@@ -266,11 +266,12 @@ main>section{--section-top:clamp(100px,12vh,180px);--transition-band:clamp(180px
 #experience{height:auto;min-height:900px}
 #skills{min-height:960px}
 .portfolio-wall{height:1450px;padding-top:var(--section-top);padding-bottom:0!important}
-main>section:not(#contact)::after{content:"";position:absolute;z-index:1;left:0;right:0;top:auto;bottom:0;height:var(--transition-band);transform:none;pointer-events:none}
-#about::after{background:linear-gradient(to bottom,rgba(245,252,252,0) 0%,rgba(250,253,253,.54) 48%,#fff 100%),url("水波纹图/1.jpg") center 78%/cover no-repeat}
-#experience::after{background:linear-gradient(to bottom,#fff 0%,rgba(255,255,255,.68) 48%,rgba(225,242,244,.74) 100%),url("水波纹图/5.jpg") center 20%/cover no-repeat}
-#skills::after{background:linear-gradient(to bottom,rgba(225,242,244,.72) 0%,rgba(244,250,250,.62) 50%,#fff 100%),url("水波纹图/5.jpg") center 82%/cover no-repeat}
-.portfolio-wall::after{background:linear-gradient(to bottom,#fff 0%,rgba(255,255,255,.6) 46%,rgba(2,22,34,.5) 100%),url("水波纹图/4.jpg") center 18%/cover no-repeat}
+#about::after,#skills::before,#skills::after,#contact::before{content:"";position:absolute;z-index:1;left:0;right:0;height:var(--transition-band);pointer-events:none}
+#about::after{top:auto;bottom:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.54) 52%,#fff 100%)}
+#skills::before{top:0;bottom:auto;background:linear-gradient(to bottom,#fff 0%,rgba(255,255,255,.66) 46%,rgba(255,255,255,0) 100%)}
+#skills::after{top:auto;bottom:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.62) 50%,#fff 100%)}
+#contact::before{top:0;bottom:auto;background:linear-gradient(to bottom,#fff 0%,rgba(255,255,255,.62) 46%,rgba(255,255,255,0) 100%)}
+#experience::after,.portfolio-wall::after{content:none!important;display:none!important}
 #skills,.portfolio-wall,#contact{border-top:0!important}
 .stage-title,#skills .ghost,.portfolio-wall>h2,#contact .scene-title{opacity:.12;translate:0 38px;transition:opacity .9s ease,translate .9s cubic-bezier(.2,.75,.25,1)}
 #experience.flow-active .stage-title,#skills.flow-active .ghost,.portfolio-wall.flow-active>h2,#contact.flow-active .scene-title{opacity:1;translate:0 0}
