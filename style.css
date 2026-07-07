@@ -304,3 +304,16 @@ main>section{--transition-band:clamp(160px,12vw,200px)}
 .portfolio-wall::after{background:linear-gradient(to bottom,#fff 0%,rgba(255,255,255,.7) 43%,rgba(8,47,64,.32) 100%),url("水波纹图/4.jpg") center 20%/cover no-repeat}
 @media(max-width:900px){main>section{--transition-band:160px}#experience{min-height:960px}}
 @media(max-width:560px){main>section{--transition-band:130px}#experience{min-height:880px}}
+
+/* Definitive flow fix: transition bands live inside sections, so overflow cannot clip them. */
+#about{order:-1!important}
+#experience{order:0!important}
+#skills{order:1!important}
+#internship-detail{order:2!important}
+#contact{order:3!important}
+main>section{margin-top:0!important;margin-bottom:0!important}
+main>section:not(#contact)::after{content:"";position:absolute;z-index:1;left:0;right:0;top:auto!important;bottom:0!important;height:var(--transition-band);transform:none!important;pointer-events:none}
+#about::after{background:linear-gradient(to bottom,rgba(245,252,252,0) 0%,rgba(248,252,252,.48) 44%,#fff 100%),url("水波纹图/1.jpg") center 78%/cover no-repeat}
+#experience::after{background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.64) 38%,rgba(225,242,244,.76) 100%),url("水波纹图/5.jpg") center 20%/cover no-repeat}
+#skills::after{background:linear-gradient(to bottom,rgba(211,235,239,0) 0%,rgba(239,248,249,.58) 48%,#fff 100%),url("水波纹图/5.jpg") center 82%/cover no-repeat}
+.portfolio-wall::after{background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.56) 42%,rgba(2,22,34,.5) 100%),url("水波纹图/4.jpg") center 18%/cover no-repeat}
